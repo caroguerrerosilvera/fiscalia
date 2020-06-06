@@ -21,6 +21,7 @@
     "electron": "^9.0.2"
   },
   "dependencies": {
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "mysql": "^2.18.1"
   }
 }
