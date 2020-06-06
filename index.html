@@ -22,15 +22,28 @@
         <button onclick="cargarRegistroUsuario()">Registrarse</button>
         <button onclick="login()">Ingresar</button>
     </div>
+    <ul>
+        <li>
+            <a href="vistas/usuarios/registro.html">Vista registro usuario</a>
+        </li>
+        <li>
+            <a href="vistas/home.html">Vista Home</a>
+        </li>
+    </ul>
+    
+    
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script>
+        const authControlador = require('./controladores/usuarios/autenticacion.js');
+
         function login () {
             const usuario = $('#usuario').val();
             const contrasena = $('#contrasena').val();   
+            authControlador.autenticar(usuario, contrasena);
         }
 
         function cargarRegistroUsuario () {
-            window.location = './views/usuarios/registro.html';
+            window.location = './vistas/usuarios/registro.html';
         }
     </script>
   </body>
