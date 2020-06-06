@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  </head>
+  <body>
+    <div>
+       <label for="">Usuario:</label>
+       <input
+        type="text"
+        placeholder="Ingresa tu usuario"
+        id="usuario"> 
+       <label for="">Contrasena:</label>
+       <input
+        type="password"
+        placeholder="Ingresa tu contrasena"
+        id="contrasena"> 
+    </div>
+    <div>
+        <button onclick="cargarRegistroUsuario()">Registrarse</button>
+        <button onclick="login()">Ingresar</button>
+    </div>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script>
+        function login () {
+            const usuario = $('#usuario').val();
+            const contrasena = $('#contrasena').val();   
+        }
+
+        function cargarRegistroUsuario () {
+            window.location = './views/usuarios/registro.html';
+        }
+    </script>
+  </body>
+</html>
