@@ -16,8 +16,4 @@ con.connect((err) => {
     console.log('Conexion a la BD establecida');
 });
 
-con.end((err) => {
-    if (err) console.log(err);
-});
-
 module.exports = con;
