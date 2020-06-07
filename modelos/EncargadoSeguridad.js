@@ -1,4 +1,4 @@
-// const conexion = require('./conexion');
+const conexion = require('./conexion');
 
 function autenticar (usuario, contrasena) {
     console.log('modelo', usuario, contrasena);
