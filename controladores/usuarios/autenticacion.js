@@ -6,4 +6,4 @@ function autenticar (usuario, contrasena) {
 
 module.exports = {
     autenticar
-};
+}
