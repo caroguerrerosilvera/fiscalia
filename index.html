@@ -37,7 +37,13 @@
        <input
         type="password"
         placeholder="Ingresa tu contrasena"
-        id="contrasena"></center>
+        id="contrasena">
+        <span id="error"></span>
+        </center>
+    </div>
+    <div>
+        <button onclick="cargarRegistroUsuario()">Registrarse</button>
+        <button onclick="login()">Ingresar</button>
     </div>
     <br><br><br>
     <div><center>
@@ -59,12 +65,18 @@
     
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script>
-        const authControlador = require('./controladores/usuarios/autenticacion.js');
+        const authControlador = require('./controladores/usuarios.js');
 
-        function login () {
+        async function login () {
             const usuario = $('#usuario').val();
             const contrasena = $('#contrasena').val();   
-            authControlador.autenticar(usuario, contrasena);
+            const respuesta = await authControlador.autenticar(usuario, contrasena);
+
+            if (respuesta.status === 'Error') {
+                $('#error').html(respuesta.message);
+            } else {
+                window.location = './vistas/home.html';
+            }
         }
 
         function cargarRegistroUsuario () {

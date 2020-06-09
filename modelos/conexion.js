@@ -1,11 +1,10 @@
 const mysql = require('mysql');
 
-// Tener en cuenta que los datos de conexion
-// deben corresponder a la base de datos en el entorno local
+// Los datos de conexion deben corresponder a la base de datos que queramos conectar
 const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    host: '142.93.5.7',
+    user: 'maya',
+    password: 'EquipoAlfaDinamitaLobo1234k',
     database: 'fiscalia'
 });
   
@@ -15,10 +14,6 @@ con.connect((err) => {
         return;
     }
     console.log('Conexion a la BD establecida');
-});
-
-con.end((err) => {
-    console.log(err);
 });
 
 module.exports = con;
