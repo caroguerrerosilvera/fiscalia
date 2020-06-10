@@ -5,6 +5,7 @@ async function listar () {
         const respuesta = await detenidoModelo.listar();
         return respuesta;
     } catch (err) {
+        console.log(err);
         return { status: 'Error', message: err.message }
     }
 }
@@ -18,7 +19,27 @@ async function buscarPorCedula (cedula) {
     }
 }
 
+async function registrarEntrada (cedula, nombre, apellido, fechaNacimiento, idCelda, idEncargadoSeguridad) {
+    if (!cedula || !nombre || !apellido || !fechaNacimiento || !idCelda || !idEncargadoSeguridad) {
+        return { status: 'Error', message: 'Por favor rellene todos los campos' }
+    }
+
+    try {
+        const detenido = await detenidoModelo.consultarDetenidoPorCedula(cedula);
+        if (!detenido) {
+            console.log('here');
+            await detenidoModelo.registrarDetenido(cedula, nombre, apellido, fechaNacimiento, idCelda);
+        }
+
+        const ingreso = await detenidoModelo.registrarEntrada(cedula, idEncargadoSeguridad);
+        return ingreso;
+    } catch (err) {
+        return { status: 'Error', message: err.message }
+    }
+}
+
 module.exports = {
     buscarPorCedula,
-    listar
+    listar,
+    registrarEntrada
 };

@@ -58,7 +58,7 @@
                <select id="celdas"></select>
           </div>
      </div>    
-     <a class="boton" href="">Ingresar</a>
+     <button onclick="registrarDetenido()">Ingresar</button>
      <script>window.$ = window.jQuery = require('jquery');</script>
      <script>
           const detenidosControlador = require('../../controladores/detenidos.js');
@@ -89,14 +89,35 @@
                if (respuesta.status === 'Error') {
                     $('#error').html(respuesta.message);
                } else {
-                    if (respuesta.length === 0) {
+                    if (!respuesta) {
                          $('#estadoBusqueda').html('No se encontro un detenido con esta cedula');
                     } else {
-                         const datosDetenido = respuesta[0];
-                         $('#nombre').val(datosDetenido.nombreDetenido);
-                         $('#apellido').val(datosDetenido.apellidoDetenido);
-                         $('#fechaNacimiento').val(datosDetenido.fechaDeNacimiento);
+                         $('#nombre').val(respuesta.nombreDetenido);
+                         $('#apellido').val(respuesta.apellidoDetenido);
+                         $('#fechaNacimiento').val(respuesta.fechaDeNacimiento);
                     }
+               }
+          }
+
+          async function registrarDetenido () {
+               const cedula = $('#cedula').val();
+               const nombre = $('#nombre').val();
+               const apellido = $('#apellido').val();
+               const fechaNacimiento = $('#fechaNacimiento').val();
+               const celda = $('#celdas').children("option:selected").val();
+
+               const respuesta = await detenidosControlador.registrarEntrada(
+                    cedula,
+                    nombre,
+                    apellido,
+                    fechaNacimiento,
+                    celda,
+                    3
+               );
+               if (respuesta.status === 'Error') {
+                    $('#error').html(respuesta.message);
+               } else {
+                    // window.location = './index.html';
                }
           }
 

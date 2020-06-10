@@ -1,6 +1,6 @@
 const conexion = require('./conexion');
 
-function registrarDetenido(cedula, nombre, apellido, fechaNacimiento, idCelda, idEncargadoSeguridad) {
+function registrarDetenido(cedula, nombre, apellido, fechaNacimiento, idCelda) {
     return new Promise(function(resolve, reject) {  
         const queryDetenido = `INSERT INTO detenido(cedulaDetenido, nombreDetenido, apellidoDetenido, fechaDeNacimiento, idCelda) VALUES (${cedula}, '${nombre}', '${apellido}', '${fechaNacimiento}', ${idCelda})`;
         conexion.query(queryDetenido, function (error) {
@@ -15,7 +15,7 @@ function consultarDetenidoPorCedula (cedulaDetenido) {
         const query = `SELECT * FROM detenido WHERE cedulaDetenido = ${cedulaDetenido}`;
         conexion.query(query, function (error, results) {
             if (error) return reject(error);
-            resolve(results);
+            resolve(results[0]);
         });        
     });
 }
@@ -32,7 +32,7 @@ function registrarSalida(cedulaDetenido, idEncargadoSeguridad) {
 
 function registrarEntrada(cedulaDetenido, idEncargadoSeguridad) {
     return new Promise(function(resolve, reject) {  
-        const query = `INSERT INTO registroingreso(idEncargadoSeguridad, cedulaDetenido, horaYFechaSalida) VALUES (${idEncargadoSeguridad},${cedulaDetenido},now())`;
+        const query = `INSERT INTO registroingreso(idEncargadoSeguridad, cedulaDetenido, horaYFechaIngreso) VALUES (${idEncargadoSeguridad},${cedulaDetenido},now())`;
         conexion.query(query, function (error) {
             if (error) return reject(error);
             resolve(true);
@@ -42,7 +42,7 @@ function registrarEntrada(cedulaDetenido, idEncargadoSeguridad) {
 
 function listar() {
     return new Promise(function(resolve, reject) {  
-        const query = `SELECT
+        const query = `SELECT * FROM (SELECT
             detenido.cedulaDetenido,
             detenido.nombreDetenido,
             detenido.apellidoDetenido,
@@ -60,7 +60,8 @@ function listar() {
             LEFT JOIN delito ON delito.idDelito = delitodetenido.idDelito
             LEFT JOIN encargadoseguridad as encargadoEntrada ON encargadoEntrada.idEncargadoSeguridad = registroingreso.idEncargadoSeguridad
             LEFT JOIN encargadoseguridad as encargadoSalida ON encargadoSalida.idEncargadoSeguridad = registrosalida.idEncargadoSeguridad
-            ORDER BY registroingreso.horaYFechaIngreso`;
+            ORDER BY registroingreso.horaYFechaIngreso) as detenidos
+            GROUP BY cedulaDetenido`;
         conexion.query(query, function (error, results) {
             if (error) return reject(error);
             resolve(results);
