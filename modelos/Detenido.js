@@ -42,10 +42,24 @@ function registrarEntrada(cedulaDetenido, idEncargadoSeguridad) {
 
 function listar() {
     return new Promise(function(resolve, reject) {  
-        const query = `SELECT * FROM detenido
+        const query = `SELECT
+            detenido.cedulaDetenido,
+            detenido.nombreDetenido,
+            detenido.apellidoDetenido,
+            detenido.fechaDeNacimiento,
+            detenido.idCelda,
+            registroingreso.horaYFechaIngreso,
+            registrosalida.horaYFechaSalida,
+            delito.nombreDelito,
+            encargadoEntrada.nombreEncargado as encargadoIngreso,
+            encargadoSalida.nombreEncargado as encargadoSalida
+            FROM detenido
             LEFT JOIN registroingreso ON registroingreso.cedulaDetenido = detenido.cedulaDetenido
             LEFT JOIN registrosalida ON registrosalida.cedulaDetenido = detenido.cedulaDetenido
             LEFT JOIN delitodetenido ON delitodetenido.cedulaDetenido = detenido.cedulaDetenido
+            LEFT JOIN delito ON delito.idDelito = delitodetenido.idDelito
+            LEFT JOIN encargadoseguridad as encargadoEntrada ON encargadoEntrada.idEncargadoSeguridad = registroingreso.idEncargadoSeguridad
+            LEFT JOIN encargadoseguridad as encargadoSalida ON encargadoSalida.idEncargadoSeguridad = registrosalida.idEncargadoSeguridad
             ORDER BY registroingreso.horaYFechaIngreso`;
         conexion.query(query, function (error, results) {
             if (error) return reject(error);
@@ -56,7 +70,6 @@ function listar() {
 
 module.exports = {
     consultarDetenidoPorCedula,
-    eliminar,
     registrarDetenido,
     listar,
     registrarEntrada,

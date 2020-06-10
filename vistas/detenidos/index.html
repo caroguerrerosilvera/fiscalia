@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+
+<body bgcolor="Lightgrey">
+    <img src="../Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
+    <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align="right" height="50" width="50"
+            alt="Botón"></a>
+    <center><img src="../Imagenes/Lista.png" align="center" height="65" width="65" alt="Ingresar.png"></center>
+    <br><br>
+    <div id="listadoDetenidos"></div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Celda</th>
+                    <th>Delito</th>
+                    <th>Hora de Ingreso</th>
+                    <th>ID Encargado</th>
+                    <th>Hora de Salida</th>
+                    <th>ID Encargado</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script>
+        const detenidosControlador = require('../../controladores/detenidos.js');
+
+        async function cargarListaDetenidos() {
+            const respuesta = await detenidosControlador.listar();
+
+            if (respuesta.status === 'Error') {
+                console.log(respuesta);
+                $('#error').html(respuesta.message);
+            } else {
+                let lista = '';
+                let i = 0;
+                while (i < respuesta.length) {
+                    const ingreso = respuesta[i].horaYFechaIngreso ? `${respuesta[i].horaYFechaIngreso}, a cargo de ${respuesta[i].encargadoIngreso}` : 'No registra';
+                    const salida = respuesta[i].horaYFechaSalida ? `${respuesta[i].horaYFechaSalida}, a cargo de ${respuesta[i].encargadoSalida}` : 'No registra';
+                    lista += `
+                        <div class="card">
+                            <div class="card-item"><strong>Cédula: </strong> ${respuesta[i].cedulaDetenido}</div>
+                            <div class="card-item"><strong>Nombres y apellidos: </strong> ${respuesta[i].nombreDetenido} ${respuesta[i].apellidoDetenido}</div>
+                            <div class="card-item"><strong>Celda: </strong> ${respuesta[i].idCelda}</div>
+                            <div class="card-item"><strong>Delito: </strong> ${respuesta[i].nombreDelito || 'No registra delito'}</div>
+                            <div class="card-item"><strong>Ingreso: </strong> ${ingreso}</div>
+                            <div class="card-item"><strong>Salida: </strong> ${salida}</div>
+                        </div>
+                    `;
+                    i++;
+                }
+                $('#listadoDetenidos').html(lista);
+            }
+        }
+
+        cargarListaDetenidos();
+    </script>
+</body>
+
+</html>
