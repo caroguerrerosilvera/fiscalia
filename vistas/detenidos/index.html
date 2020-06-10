@@ -11,40 +11,44 @@
     <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align="right" height="50" width="50"
             alt="Botón"></a>
     <center><img src="../Imagenes/Lista.png" align="center" height="65" width="65" alt="Ingresar.png"></center>
-    <br><br>
-    <div id="listadoDetenidos"></div>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Cédula</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Celda</th>
-                    <th>Delito</th>
-                    <th>Hora de Ingreso</th>
-                    <th>ID Encargado</th>
-                    <th>Hora de Salida</th>
-                    <th>ID Encargado</th>
-                </tr>
-            </thead>
-        </table>
+    <div class="list-header">
+        <div style="display: flex; align-items: center;">
+            <input
+                type="text"
+                style="margin-right: 5px;"
+                placeholder="Ingresa la cédula a buscar"
+                id="buscarDetenido"
+            >
+            <button onclick="buscarPorCedula()">
+                <img class="icon" src="../Imagenes/search.svg" alt="Search">
+            </button>
+        </div>
+        <div>
+            <a href="./ingresar-detenido.html">
+                <button>Registrar ingreso</button>
+            </a>
+        </div>
     </div>
+    <div id="listadoDetenidos"></div>
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script>
         const detenidosControlador = require('../../controladores/detenidos.js');
 
-        async function cargarListaDetenidos() {
+        async function cargarListaDetenidos(cedula) {
+            $('#listadoDetenidos').html('');
             const respuesta = await detenidosControlador.listar();
 
             if (respuesta.status === 'Error') {
-                console.log(respuesta);
                 $('#error').html(respuesta.message);
             } else {
                 let lista = '';
                 let i = 0;
                 while (i < respuesta.length) {
+                    if (cedula && cedula.length > 0 && respuesta[i].cedulaDetenido != cedula) {
+                        i++;
+                        continue;
+                    }
+
                     const ingreso = respuesta[i].horaYFechaIngreso ? `${respuesta[i].horaYFechaIngreso}, a cargo de ${respuesta[i].encargadoIngreso}` : 'No registra';
                     const salida = respuesta[i].horaYFechaSalida ? `${respuesta[i].horaYFechaSalida}, a cargo de ${respuesta[i].encargadoSalida}` : 'No registra';
                     lista += `
@@ -59,10 +63,20 @@
                     `;
                     i++;
                 }
-                $('#listadoDetenidos').html(lista);
+
+                if (lista.length > 0) {
+                    $('#listadoDetenidos').html(lista);
+                } else {
+                    $('#listadoDetenidos').html('<div>No se encontraron resultados</div>');
+                }
+                
             }
         }
 
+        function buscarPorCedula () {
+            const cedula = $('#buscarDetenido').val();
+            cargarListaDetenidos(cedula);
+        }
         cargarListaDetenidos();
     </script>
 </body>
