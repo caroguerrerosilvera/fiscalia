@@ -1,87 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
 
-    <style type="text/css">
-                .boton{
-                 text-decoration: none;
-                 padding: 10px;
-                 font-weight: 600;
-                 font-size: 20px;
-                 color: #ffffff;
-                 background-color: #1883ba;
-                 border-radius: 6px;
-                 border: 2px solid #0016b0;
-                 }
-                .boton:hover{
-                color: #1883ba;
-                 background-color: #ffffff;
-                 }
-         </style>
-  </head>
-  <body bgcolor = "Lightgrey">
-    <br><br><br><br>
-    <center><img src= "vistas/Imagenes/Fiscalia.png" style=" width: 600px; height: 175px"></center>
+<head>
+    <meta charset="UTF-8">
+    <title>Control de detenidos</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="./vistas/styles.css">
+</head>
+
+<body>
+    <div class="logo">
+        <img src="vistas/Imagenes/Fiscalia.png">
+    </div>
+    <div class="form" style="margin-top: 40px">
+        <div>
+            <label for="">Usuario</label>
+            <input type="text" placeholder="Ingresa tu usuario" id="usuario">
+        </div>
+        <div>
+            <label for="">Contraseña</label>
+            <input type="password" placeholder="Ingresa tu contrasena" id="contrasena">
+        </div>
+    </div>
     <div>
-    <br><br><br><br><br><br><br>
-       <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Usuario:</label></FONT></b> 
-       <input
-        type="text"
-        placeholder="Ingresa tu usuario"
-        id="usuario"></center>
-    <br><br>    
-       <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Contraseña:</label></FONT></b> 
-       <input
-        type="password"
-        placeholder="Ingresa tu contrasena"
-        id="contrasena">
-        <span id="error"></span>
+        <br><br><br><br><br><br><br>
+        <center><b>
+                <FONT FACE="Arial" SIZE=5 COLOR="black"><label for="">Usuario:</label></FONT>
+            </b>
+            <input type="text" placeholder="Ingresa tu usuario" id="usuario"></center>
+        <br><br>
+        <center><b>
+                <FONT FACE="Arial" SIZE=5 COLOR="black"><label for="">Contraseña:</label></FONT>
+            </b>
+            <input type="password" placeholder="Ingresa tu contrasena" id="contrasena">
+            <span id="error"></span>
         </center>
     </div>
     <div>
-        <button onclick="cargarRegistroUsuario()">Registrarse</button>
-        <button onclick="login()">Ingresar</button>
+        <a class="boton" href="vistas/usuarios/registro.html">Registrarse</a>
+        <a class="boton" onclick="login()">Ingresar</a>
     </div>
-    <br><br><br>
-    <div><center>
-        <a class = "boton" href="vistas/usuarios/registro.html" onclick="cargarRegistroUsuario()">Registrarse</a>
-        <a class = "boton" href="" onclick="login()">Ingresar</a>
-        
-    </div></center>
-    <ul>
-    <br><br><br>
-        <li>
-            <center><a href="vistas/usuarios/registro.html">Vista registro usuario</a>
-        </li></center>
-    <br>
-        <li>
-            <a href="vistas/home.html">Vista Home</a>
-        </li>
-        <li>
-            <a href="vistas/visitas/ingresoVisita.html">Vista Ingreso Visita </a>
-        </li>
-        <li>
-            <a href="vistas/visitas/listaVisita.html">Vista Lista Visita </a>
-        </li>
-        <li>
-            <a href="vistas/visitas/registroVisita.html">Vista Registro Visita </a>
-        </li> 
-        <li>
-            <a href="vistas/visitas/visitaTerminada.html">Vista Visita Terminada </a>
-        </li> 
-    </ul>
-    
-    
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script>
         const authControlador = require('./controladores/usuarios.js');
 
-        async function login () {
+        async function login() {
             const usuario = $('#usuario').val();
-            const contrasena = $('#contrasena').val();   
+            const contrasena = $('#contrasena').val();
             const respuesta = await authControlador.autenticar(usuario, contrasena);
 
             if (respuesta.status === 'Error') {
@@ -91,9 +56,10 @@
             }
         }
 
-        function cargarRegistroUsuario () {
+        function cargarRegistroUsuario() {
             window.location = './vistas/usuarios/registro.html';
         }
     </script>
-  </body>
+</body>
+
 </html>
