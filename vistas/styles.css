@@ -30,6 +30,22 @@ input {
     padding: 3px;
 }
 
+.form > .field {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.form input {
+    margin-right: 5px;
+}
+
 .icon {
     width: 15px;
 }

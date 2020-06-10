@@ -9,6 +9,16 @@ async function listar () {
     }
 }
 
+async function buscarPorCedula (cedula) {
+    try {
+        const respuesta = await detenidoModelo.consultarDetenidoPorCedula(cedula);
+        return respuesta;
+    } catch (err) {
+        return { status: 'Error', message: err.message }
+    }
+}
+
 module.exports = {
-    listar, 
+    buscarPorCedula,
+    listar
 };
