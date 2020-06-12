@@ -1,22 +1,8 @@
 <html>
 
     <head>
-         <style type="text/css">
-                .boton{
-                 text-decoration: none;
-                 padding: 10px;
-                 font-weight: 600;
-                 font-size: 20px;
-                 color: #ffffff;
-                 background-color: #1883ba;
-                 border-radius: 6px;
-                 border: 2px solid #0016b0;
-                 }
-                .boton:hover{
-                color: #1883ba;
-                 background-color: #ffffff;
-                 }
-         </style>
+         <link rel="stylesheet" type="text/css" href="../styles.css">
+         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     </head>
 
     <body bgcolor = "Lightgrey">
@@ -24,18 +10,23 @@
      	  <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>     
     <br>	
     <br>
-        <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black"> Visita Terminada</FONT></h1></center> 
+        <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Visita Terminada</FONT></h1></center> 
     <br><br><br>     
         <center><img src="../Imagenes/Eliminar.png" align="center" height="65" width="65" alt="Ingresar.png"></center>
     
-    <br><br><br>
-        <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Cedula del Vigilante</label></FONT></b> 
-         <input 
-         class="form-control-file" type="text" tsize = "25" maxlength="11" 
-         placeholder="Ingrese la cedula"
-         id="cedula"></center>
-    <br> <br> <br> <br>
+    <br><br>
+       <div class="form">
+          <div class="field">
+               <label for="">Cédula Visitante:</label>
+               <input 
+                    class="form-control-file" type="text" tsize = "50" maxlength="11" 
+                    placeholder="Ingrese número de cedula del visitante"
+                    id="cedula"
+               ></div>
+           </div>
     
-        <center><a class="boton" href="">Terminar</a></center>
+        <br><br>
+          <center><button onclick="" >Ingresar</button></center>
+          
    </body>
 </html>

@@ -2,22 +2,8 @@
 <html>
     
     <head>
-         <style type="text/css">
-                .boton{
-                 text-decoration: none;
-                 padding: 10px;
-                 font-weight: 600;
-                 font-size: 20px;
-                 color: #ffffff;
-                 background-color: #1883ba;
-                 border-radius: 6px;
-                 border: 2px solid #0016b0;
-                 }
-                .boton:hover{
-                color: #1883ba;
-                 background-color: #ffffff;
-                 }
-         </style>
+          <link rel="stylesheet" type="text/css" href="../styles.css">
+          <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     </head>
 
     <body bgcolor = "Lightgrey">
@@ -29,39 +15,112 @@
     <br>    
     <br> 
         <center><img src="../Imagenes/Ingresar.png" align="center" height="65" width="65" alt="Ingresar.png"></center> 
-    <br>     
-         <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Cédula:</label></FONT></b> 
-         <input 
-         class="form-control-file" type="text" tsize = "50" maxlength="11" 
-         placeholder="Ingrese número de cedula"
-         id="cedula"></center> 
-    <br>
-         <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Nombre</label></FONT></b>
-         <input 
-         class="form-control-file" type="text" tsize = "20" maxlength="20" 
-         placeholder="Ingrese el nombre"
-         id="nombre"></center>
-    <br>
-         <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Apellido:</label></FONT></b>
-         <input
-         class="form-control-file" type="text" tsize = "20" maxlength="25" 
-         placeholder="Ingrese el apellido"
-         id="apellido"></center>
-    <br>    
-         <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Fecha de Nacimiento:</label></FONT></b>
-         &nbsp;&nbsp<input
-         class="form-control-file" type="text" tsize = "20" maxlength="15" 
-         placeholder="Ingrese fecha de nacimiento"
-         id="fecha de nacimiento"></center>
-    <br>    
-         <center><b><FONT FACE = "Arial" SIZE = 5 COLOR = "black"><label for="">Celda (ID)</label></FONT></b>
-         &nbsp;&nbsp<input
-         class="form-control-file" type="text" tsize = "20" maxlength="11" 
-         placeholder="Ingrese la celda"
-         id="celda"></center>
-    <br><br><br><br>
 
-        <center><a class="boton" href="">Ingresar</a></center>
+     <div class="form">
+          <div class="field">
+               <label for="">Cédula:</label>
+               <input 
+                    class="form-control-file" type="text" tsize = "50" maxlength="11" 
+                    placeholder="Ingrese número de cedula"
+                    id="cedula"
+               >
+               <button onclick="buscarDetenido()">
+                    <img class="icon" src="../Imagenes/search.svg" alt="Search">
+               </button>
+          </div>
+          <div id="estadoBusqueda"></div>
+          <div class="field">
+               <label for="">Nombre:</label>
+               <input 
+                    class="form-control-file" type="text" tsize = "20" maxlength="20" 
+                    placeholder="Ingrese el nombre"
+                    id="nombre"
+               >
+          </div>
+          <div class="field">
+               <label for="">Apellido:</label>
+               <input
+                    class="form-control-file" type="text" tsize = "20" maxlength="25" 
+                    placeholder="Ingrese el apellido"
+                    id="apellido"
+               >
+          </div>
+          <div class="field">
+               <label for="">Fecha de Nacimiento:</label>
+               <input
+                    class="form-control-file"
+                    type="text" tsize = "20" maxlength="15" 
+                    placeholder="Ingrese fecha de nacimiento"
+                    id="fechaNacimiento"
+               >
+          </div>
+          <div class="field">
+               <label for="">Celda (ID):</label>
+               <select id="celdas"></select>
+          </div>
+     </div>    
+     <center><button onclick="registrarDetenido()" >Ingresar</button></center>
+     <script>window.$ = window.jQuery = require('jquery');</script>
+     <script>
+          const detenidosControlador = require('../../controladores/detenidos.js');
+          const celdasControlador = require('../../controladores/celdas.js');
+
+          async function cargarListadoCeldas () {
+               const celdas = await celdasControlador.listar();
+               if (celdas.status === 'Error') {
+                    $('#error').html(respuesta.message);
+               } else {
+                    let opciones = '';
+                    let i = 0;
+                    while (i < celdas.length) {
+                         opciones += `<option value="${celdas[i].idCelda}">${celdas[i].idCelda}</option>`;
+                         i++;
+                    }
+                    $('#celdas').html(opciones);
+               }
+          }
+
+          async function buscarDetenido () {
+               $('#estadoBusqueda').html('');
+               const cedula = $('#cedula').val();
+
+               if (!cedula) return;
+
+               const respuesta = await detenidosControlador.buscarPorCedula(cedula);
+               if (respuesta.status === 'Error') {
+                    $('#error').html(respuesta.message);
+               } else {
+                    if (!respuesta) {
+                         $('#estadoBusqueda').html('No se encontro un detenido con esta cedula');
+                    } else {
+                         $('#nombre').val(respuesta.nombreDetenido);
+                         $('#apellido').val(respuesta.apellidoDetenido);
+                         $('#fechaNacimiento').val(respuesta.fechaDeNacimiento);
+                    }
+               }
+          }
+
+          async function registrarDetenido () {
+               const cedula = $('#cedula').val();
+               const nombre = $('#nombre').val();
+               const apellido = $('#apellido').val();
+               const fechaNacimiento = $('#fechaNacimiento').val();
+               const celda = $('#celdas').children("option:selected").val();
+
+               const respuesta = await detenidosControlador.registrarEntrada(
+                    cedula,
+                    nombre,
+                    apellido,
+                    fechaNacimiento,
+                    celda,
+                    3
+               );
+               if (respuesta.status === 'Error') {
+                    $('#error').html(respuesta.message);
+               } else {
+                    window.location = './index.html';
+               }
+          }
 
    </body>
 </html>

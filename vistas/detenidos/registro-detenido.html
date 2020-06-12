@@ -1,27 +1,7 @@
 <!DOCTYPE html>
  <html>
    <head>
-   	
-       <style type="text/css">
-          .boton_2{
-          text-decoration: none;
-          padding: 40px;
-          font-family: arial;
-          text-transform: uppercase;
-          padding-left: 10px;
-          padding-right: 10px;
-          font-weight: 800;
-          font-size: 25px;
-          color: black;
-          background-color: #9b0e0e;
-        }
-          .boton_2:hover{
-          color: #9b0e0e;
-          background-color: #bc6355;
-          text-decoration: none;
-        }
-       </style>
-
+   	    <link rel="stylesheet" type="text/css" href="../styles.css">
    </head>
 
    <body bgcolor = "Lightgrey">
@@ -31,12 +11,33 @@
          <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Registro Detenido</FONT></h1></center> 
      <br>    
      <br> 
-         <center><img src="detenidos/Imagenes/Detenido.png" align="center" height="65" width="65" alt="Ingresar.png"></center>
+         <center><img src="../Imagenes/Detenido.png" align="center" height="90" width="90" alt="Ingresar.png"></center>
      <br><br><br><br><br><br><br>        
 
-         <a class="boton_2" align = "padding-left" href="ingresar-detenido.html">Ingresar Detenido</a>
-         <a class="boton_2" align = "padding-center" href="eliminar-detenido.html">Eliminar Detenido</a>
-         <a class="boton_2" align = "padding-right" href="listar-detenido.html">Lista Detenidos</a>
+         <center><button2 onclick = "cargarIngresoDetenido()" style = "margin: 50px">Ingresar Detenido</button2>
+                 <button2 onclick = "cargarEliminarDetenido()" style = "margin: 50px">Eliminar Detenido</button2>
+                 <button2 onclick = "cargarListaDetenido()" style = "margin: 50px">Lista Detenidos</button2></center>
+
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script>
+          function cargarIngresoDetenido() {
+              window.location = 'ingresar-detenido.html';
+          }
+        </script>
+         
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script>
+        function cargarEliminarDetenido() {
+            window.location = 'eliminar-detenido.html';
+        }
+        </script>
+
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script>
+        function cargarListaDetenido() {
+            window.location = 'index.html';
+        }
+        </script>
 
   </body>
 </html>
