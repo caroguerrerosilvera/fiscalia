@@ -6,10 +6,13 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
 
-<body bgcolor="Lightgrey">
-    <img src="../Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
-    <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align="right" height="50" width="50"
-            alt="Botón"></a>
+<body>
+    <div class="header">
+        <a href="javascript: history.go(-1)">
+            <img src="../Imagenes/Volver.png" class="back">
+        </a>
+        <img src="../Imagenes/Fiscalia.png" class="logo">
+    </div>
     <div class="list-header">
         <div style="display: flex; align-items: center;">
             <input
@@ -52,10 +55,10 @@
                     const salida = respuesta[i].horaYFechaSalida ? `${respuesta[i].horaYFechaSalida}, a cargo de ${respuesta[i].encargadoSalida}` : 'No registra';
                     lista += `
                         <div class="card">
-                            <div class="card-item"><strong>Cédula: </strong> ${respuesta[i].cedulaDetenido}</div>
+                            <div class="card-item"><strong>Cédula: </strong> ${respuesta[i].cedula}</div>
                             <div class="card-item"><strong>Nombres y apellidos: </strong> ${respuesta[i].nombreDetenido} ${respuesta[i].apellidoDetenido}</div>
-                            <div class="card-item"><strong>Celda: </strong> ${respuesta[i].idCelda}</div>
-                            <div class="card-item"><strong>Delito: </strong> ${respuesta[i].nombreDelito || 'No registra delito'}</div>
+                            <div class="card-item"><strong>Celda: </strong> ${respuesta[i].celda}</div>
+                            <div class="card-item"><strong>Delito: </strong> ${respuesta[i].delito || 'No registra delito'}</div>
                             <div class="card-item"><strong>Ingreso: </strong> ${ingreso}</div>
                             <div class="card-item"><strong>Salida: </strong> ${salida}</div>
                         </div>

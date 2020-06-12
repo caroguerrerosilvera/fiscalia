@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
 }
 
 button {
@@ -23,7 +24,11 @@ input {
 .card {
     background-color: white;
     border-radius: 4px;
+    margin-bottom: 10px;
     padding: 15px;
+    -webkit-box-shadow: -1px 14px 26px -9px rgba(0,0,0,0.28);
+    -moz-box-shadow: -1px 14px 26px -9px rgba(0,0,0,0.28);
+    box-shadow: -1px 14px 26px -9px rgba(0,0,0,0.28);
 }
 
 .card-item {
@@ -44,6 +49,22 @@ input {
 
 .form input {
     margin-right: 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .back {
+    height: 45px;
+    width: 45px;
+}
+
+.header > .logo {
+    width: 270px;
+    height: 80px;
 }
 
 .icon {
