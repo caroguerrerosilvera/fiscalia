@@ -36,8 +36,22 @@ async function registrarEntrada (cedula, nombre, apellido, fechaNacimiento, idCe
     }
 }
 
+async function registrarSalida (cedula, idEncargadoSeguridad) {
+    if (!cedula || !idEncargadoSeguridad) {
+        return { status: 'Error', message: 'Por favor rellene todos los campos' }
+    }
+
+    try {
+        const respuesta = await detenidoModelo.registrarSalida(cedula, idEncargadoSeguridad);
+        return respuesta;
+    } catch (err) {
+        return { status: 'Error', message: err.message }
+    }
+}
+
 module.exports = {
     buscarPorCedula,
     listar,
-    registrarEntrada
+    registrarEntrada,
+    registrarSalida
 };

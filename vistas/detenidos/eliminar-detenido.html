@@ -6,9 +6,13 @@
         <link rel="stylesheet" type="text/css" href="../styles.css">   
     </head>
 
-    <body bgcolor = "Lightgrey">
-    	<img src="../Imagenes/Fiscalia.png" style=" width: 400px; height: 150px">
-     	  <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>     
+    <body>
+    	<div class="header">
+            <a href="javascript: history.go(-1)">
+                <img src="../Imagenes/Volver.png" class="back">
+            </a>
+            <img src="../Imagenes/Fiscalia.png" class="logo">
+        </div>
     <br>	
     <br>
         <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Eliminar Detenido</FONT></h1></center> 
@@ -23,6 +27,21 @@
          id="cedula"></center>
     <br> <br> <br> 
     
-        <center><button onclick="">Eliminar</button>
+        <center><button onclick="eliminarDetenido()">Eliminar</button>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script>
+        const detenidosControlador = require('../../controladores/detenidos.js');
+
+        async function eliminarDetenido () {
+                const cedula = $('#cedula').val();
+                const userId = localStorage.getItem('userId');
+                const respuesta = await detenidosControlador.registrarSalida(cedula, userId);
+                if (respuesta.status === 'Error') {
+                    $('#error').html(respuesta.message);
+                } else {
+                    window.location = './index.html';
+                }
+          }
+    </script>
    </body>
 </html>

@@ -46,7 +46,7 @@
                 let lista = '';
                 let i = 0;
                 while (i < respuesta.length) {
-                    if (cedula && cedula.length > 0 && respuesta[i].cedula != cedula) {
+                    if ((cedula && cedula.length > 0 && respuesta[i].cedula != cedula) || respuesta[i].horaYFechaSalida) {
                         i++;
                         continue;
                     }
