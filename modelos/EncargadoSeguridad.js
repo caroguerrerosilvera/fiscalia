@@ -9,9 +9,11 @@ function autenticar (usuario, contrasena) {
         if (isNaN(usuario)) {
             return reject({ message: 'Recuerde que el usuario debe ser un valor numerico' });
         }
-    
+        
+        conexion.connect();
         const query = `SELECT * FROM encargadoseguridad WHERE idEncargadoSeguridad = ${usuario}`;
         conexion.query(query, function (error, results) {
+            conexion.end();
             if (error) return reject(error);
             
             const usuarioData = results[0];

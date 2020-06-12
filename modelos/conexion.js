@@ -7,13 +7,19 @@ const con = mysql.createConnection({
     password: 'EquipoAlfaDinamitaLobo1234k',
     database: 'fiscalia'
 });
-  
-con.connect((err) => {
-    if(err){
-        console.log('Error conectando a la BD');
-        return;
-    }
-    console.log('Conexion a la BD establecida');
-});
+
+function connect() {
+    con.connect((err) => {
+        if(err){
+            console.log('Error conectando a la BD');
+            return;
+        }
+        console.log('Conexion a la BD establecida');
+    });
+}
+
+function end() {
+    con.end();
+}
 
 module.exports = con;
