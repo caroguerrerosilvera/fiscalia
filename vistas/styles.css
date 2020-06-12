@@ -33,13 +33,16 @@ button1:hover{
 
 button2 {
      cursor: pointer;
-     padding: 60px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
      font-weight: 600;
      border: none;
      color: white;
      background-color: #4169E1;
      border-radius: 6px;
-     max-height: 0px;   
+     height: 130px;
+     width: 180px;
 }
 
 button2:hover{
@@ -69,6 +72,10 @@ input {
     padding: 3px;
 }
 
+.content {
+    padding: 20px;
+}
+
 .form > .field {
     padding: 10px;
     display: flex;
@@ -89,6 +96,7 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
 }
 
 .header .back {
@@ -109,5 +117,10 @@ input {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 15px 0;
+    padding: 15px 20px;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
 }

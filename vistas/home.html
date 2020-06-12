@@ -1,19 +1,24 @@
 <html>
   <head>
-         <link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
 
     <body>
-      <img src="Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
-        <a href="javascript: history.go(-1)"><img src="Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>
+      <div class="header">
+        <a href="javascript: history.go(-1)">
+            <img src="./Imagenes/Volver.png" class="back">
+        </a>
+        <img src="./Imagenes/Fiscalia.png" class="logo">
+      </div>
    <br><br><br>   
       <center><h1><FONT FACE = "Copperplate" SIZE = 7 COLOR = "black">Seleccionar Registro</FONT></h1></center> 
    <br>
       <center><img src="Imagenes/Home.png" align="center" height="100" width="100" alt="Ingresar.png"></center>
-   <br><br><br><br><br><br>
-      <center><button1 onclick = "cargarRegistroDetenido()" style = "margin: 50px">Detenidos</button1>
-      <button1 onclick = "cargarRegistroVisita()" style = "margin: 50px">Visitas</button1>
-      <button1 onclick = "cargarRegistroDesplazamiento()" style = "margin: 50px">Desplazamientos</button1></center> 
+      <div class="options">
+        <button1 onclick = "cargarRegistroDetenido()" style = "margin: 50px">Detenidos</button1>
+        <button1 onclick = "cargarRegistroVisita()" style = "margin: 50px">Visitas</button1>
+        <button1 onclick = "cargarRegistroDesplazamiento()" style = "margin: 50px">Desplazamientos</button1>
+      </div> 
                
       <script>window.$ = window.jQuery = require('jquery');</script>
       <script>

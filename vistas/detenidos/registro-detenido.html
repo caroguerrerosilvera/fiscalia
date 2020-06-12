@@ -1,22 +1,28 @@
 <!DOCTYPE html>
  <html>
    <head>
-   	    <link rel="stylesheet" type="text/css" href="../styles.css">
+           <link rel="stylesheet" type="text/css" href="../styles.css">
+           <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
    </head>
 
-   <body bgcolor = "Lightgrey">
-      <img src="../Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
-          <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>
+   <body>
+    <div class="header">
+        <a href="javascript: history.go(-1)">
+            <img src="../Imagenes/Volver.png" class="back">
+        </a>
+        <img src="../Imagenes/Fiscalia.png" class="logo">
+    </div>
       <br><br><br>
-         <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Registro Detenido</FONT></h1></center> 
+         <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Gestión de Detenidos</FONT></h1></center> 
      <br>    
      <br> 
-         <center><img src="../Imagenes/Detenido.png" align="center" height="90" width="90" alt="Ingresar.png"></center>
-     <br><br><br><br><br><br><br>        
+         <center><img src="../Imagenes/Detenido.png" align="center" height="90" width="90" alt="Ingresar.png"></center>       
 
-         <center><button2 onclick = "cargarIngresoDetenido()" style = "margin: 50px">Ingresar Detenido</button2>
-                 <button2 onclick = "cargarEliminarDetenido()" style = "margin: 50px">Eliminar Detenido</button2>
-                 <button2 onclick = "cargarListaDetenido()" style = "margin: 50px">Lista Detenidos</button2></center>
+     <div class="options">
+        <button2 onclick = "cargarIngresoDetenido()" style = "margin: 50px">Ingresar Detenido</button2>
+        <button2 onclick = "cargarEliminarDetenido()" style = "margin: 50px">Eliminar Detenido</button2>
+        <button2 onclick = "cargarListaDetenido()" style = "margin: 50px">Lista Detenidos</button2>
+     </div>
 
         <script>window.$ = window.jQuery = require('jquery');</script>
         <script>
@@ -35,7 +41,7 @@
         <script>window.$ = window.jQuery = require('jquery');</script>
         <script>
         function cargarListaDetenido() {
-            window.location = 'index.html';
+            window.location = './index.html';
         }
         </script>
 
