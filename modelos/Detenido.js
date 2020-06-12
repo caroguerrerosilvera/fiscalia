@@ -61,7 +61,7 @@ function listar() {
             LEFT JOIN encargadoseguridad as encargadoEntrada ON encargadoEntrada.idEncargadoSeguridad = registroingreso.idEncargadoSeguridad
             LEFT JOIN encargadoseguridad as encargadoSalida ON encargadoSalida.idEncargadoSeguridad = registrosalida.idEncargadoSeguridad
             ORDER BY registroingreso.horaYFechaIngreso) as detenidos
-            GROUP BY cedulaDetenido`;
+            GROUP BY cedulaDetenido LIMIT 1`;
         conexion.query(query, function (error, results) {
             if (error) return reject(error);
             resolve(results);
