@@ -90,7 +90,7 @@
                if (!cedula) return;
 
                const respuesta = await detenidosControlador.buscarPorCedula(cedula);
-               if (respuesta.status === 'Error') {
+               if (respuesta && respuesta.status === 'Error') {
                     $('#error').html(respuesta.message);
                } else {
                     if (!respuesta) {

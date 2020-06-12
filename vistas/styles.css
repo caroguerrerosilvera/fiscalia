@@ -58,6 +58,10 @@ input {
     border-radius: 4px;
 }
 
+#estadoBusqueda {
+    text-align: center;
+}
+
 .card {
     background-color: white;
     border-radius: 4px;
