@@ -33,9 +33,8 @@
     </div>
     <div id="listadoDetenidos" class="content"></div>
     <script>window.$ = window.jQuery = require('jquery');</script>
+    <script>window.detenidosControlador = require('../../controladores/detenidos.js');</script>
     <script>
-        const detenidosControlador = require('../../controladores/detenidos.js');
-
         async function cargarListaDetenidos(cedula) {
             $('#listadoDetenidos').html('');
             const respuesta = await detenidosControlador.listar();
