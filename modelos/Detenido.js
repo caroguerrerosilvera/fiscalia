@@ -60,9 +60,7 @@ function listar() {
         LEFT JOIN encargadoseguridad as encargadoEntrada ON encargadoEntrada.idEncargadoSeguridad = registroingreso.idEncargadoSeguridad
         LEFT JOIN encargadoseguridad as encargadoSalida ON encargadoSalida.idEncargadoSeguridad = registrosalida.idEncargadoSeguridad
         GROUP BY detenido.cedulaDetenido`;
-        conexion.connect;
         conexion.query(query, function (error, results) {
-            conexion.end();
             if (error) return reject(error);
             resolve(results);
         });

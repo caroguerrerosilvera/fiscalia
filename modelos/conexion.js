@@ -8,18 +8,12 @@ const con = mysql.createConnection({
     database: 'fiscalia'
 });
 
-function connect() {
-    con.connect((err) => {
-        if(err){
-            console.log('Error conectando a la BD');
-            return;
-        }
-        console.log('Conexion a la BD establecida');
-    });
-}
-
-function end() {
-    con.end();
-}
+con.connect((err) => {
+    if(err){
+        console.log('Error conectando a la BD');
+        return;
+    }
+    console.log('Conexion a la BD establecida');
+});
 
 module.exports = con;
