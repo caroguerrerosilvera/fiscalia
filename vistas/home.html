@@ -1,30 +1,40 @@
 <html>
   <head>
-       <br> 
-    <body bgcolor= "lightgrey">
-        <img src="Fiscalia.png" style="width: 350px; height: 100px"
-        <br>
-        <br>
-        <br>
-    </body>
-  </head>
-  </html>
-  <html>
-  <body>
-    
-      <ul>
-        <li>
-            <a href="salir/index.html">Salir</a>
-        </li>
-        <li>
-            <a href="detenidos/index.html">Detenidos</a>
-        </li>
-        <li>
-            <a href="visitas/index.html">Visitas</a>
-        </li>
-        <li>
-            <a href="desplazamiento/index.html">Desplazamientos</a>
-        </li>
-    </ul>
-  </body>
-  </html>
+         <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+
+    <body bgcolor = "Lightgrey">
+      <img src="Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
+        <a href="javascript: history.go(-1)"><img src="Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>
+   <br><br><br>   
+      <center><h1><FONT FACE = "Copperplate" SIZE = 7 COLOR = "black">Seleccionar Registro</FONT></h1></center> 
+   <br>
+      <center><img src="Imagenes/Home.png" align="center" height="100" width="100" alt="Ingresar.png"></center>
+   <br><br><br><br><br><br>
+      <center><button1 onclick = "cargarRegistroDetenido()" style = "margin: 50px">Detenidos</button1>
+      <button1 onclick = "cargarRegistroVisita()" style = "margin: 50px">Visitas</button1>
+      <button1 onclick = "cargarRegistroDesplazamiento()" style = "margin: 50px">Desplazamientos</button1></center> 
+               
+      <script>window.$ = window.jQuery = require('jquery');</script>
+      <script>
+        function cargarRegistroDetenido() {
+            window.location = 'detenidos/registro-detenido.html';
+        }
+      </script>
+      
+      <script>window.$ = window.jQuery = require('jquery');</script>
+      <script>
+        function cargarRegistroVisita() {
+            window.location = 'visitas/registroVisita.html';
+        }
+      </script>
+
+      <script>window.$ = window.jQuery = require('jquery');</script>
+      <script>
+        function cargarRegistroDesplazamiento() {
+            window.location = 'desplazamiento/registro-desplazamiento.html';
+        }
+      </script>
+
+   </body>
+</html>

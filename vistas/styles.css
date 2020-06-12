@@ -14,6 +14,40 @@ button {
     max-height: 39px;
 }
 
+button1 {
+    cursor: pointer;
+    padding: 70px;
+    font-weight: 600;
+    border: none;
+    color: white;
+    background-color: #1883ba;
+    border-radius: 6px;
+    max-height: 50px;
+}
+
+button1:hover{
+    color: #9b0e0e;
+    background-color: #bc6355;
+    text-decoration: none;
+}
+
+button2 {
+     cursor: pointer;
+     padding: 60px;
+     font-weight: 600;
+     border: none;
+     color: white;
+     background-color: #4169E1;
+     border-radius: 6px;
+     max-height: 0px;   
+}
+
+button2:hover{
+    color: #9b0e0e;
+    background-color: #bc6355;
+    text-decoration: none;
+}
+
 input {
     height: 35px;
     width: 230px;

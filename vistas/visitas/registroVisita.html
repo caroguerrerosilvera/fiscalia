@@ -1,36 +1,51 @@
 <html>
     <head>
-        <style type="text/css">
-               .boton{
-                text-decoration: none;
-                padding: 10px;
-                font-weight: 600;
-                font-size: 20px;
-                color: #ffffff;
-                background-color: #1883ba;
-                border-radius: 6px;
-                border: 2px solid #0016b0;
-                }
-               .boton:hover{
-               color: #1883ba;
-                background-color: #ffffff;
-                }
-        </style>
+        <link rel="stylesheet" type="text/css" href="../styles.css">
     </head>
+    
+    <body bgcolor = "Lightgrey">
+      <img src="../Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
+          <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>
+      <br><br><br>
+         <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Registro Visita</FONT></h1></center> 
+     <br>    
+     <br> 
+         <center><img src="../Imagenes/Visita.png" align="center" height="100" width="100" alt="Ingresar.png"></center>
+     <br><br><br><br>       
 
-      <ul>
-        <li>
-            <a href="salir/index.html">Salir</a>
-        </li>
-        <li>
-            <a href="ingresarVisita/index.html">Ingresar Vista</a>
-        </li>
-        <li>
-            <a href="visitaTerminada/index.html">Visita Terminada</a>
-        </li>
-        <li>
-            <a href="listaVisita/index.html">Lista Visita</a>
-        </li>
-     </ul>
+         <center><button2 onclick = "cargarIngresoVisita()" style = "margin: 50px">Ingresar Visita</button2>
+                 <button2 onclick = "cargarVisitaTerminada()" style = "margin: 50px">Visita Terminada</button2>
+                 <button2 onclick = "cargarListaVisitas()" style = "margin: 50px">Lista Visitas</button2></center>
+          <br><br><br><br><br><br><br><br>       
+                <center><button2 onclick = "cargarVisitante()" style = "margin: 50px">Ingresar Visitante</button2></center>
 
-  </html>
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script>
+          function cargarIngresoVisita() {
+              window.location = 'ingresoVisita.html';
+          }
+        </script>
+
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script>
+          function cargarVisitaTerminada() {
+              window.location = 'visitaTerminada.html';
+          }
+        </script>
+
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script>
+          function cargarListaVisitas() {
+              window.location = 'index.html';
+          }
+        </script>
+
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script>
+          function cargarVisitante() {
+              window.location = 'visitante.html';
+          }
+        </script>
+
+    </body>
+</html>
