@@ -2,27 +2,16 @@
 <html>
 
     <head>
-         <style type="text/css">
-                .boton{
-                 text-decoration: none;
-                 padding: 10px;
-                 font-weight: 600;
-                 font-size: 20px;
-                 color: #ffffff;
-                 background-color: #1883ba;
-                 border-radius: 6px;
-                 border: 2px solid #0016b0;
-                 }
-                .boton:hover{
-                color: #1883ba;
-                 background-color: #ffffff;
-                 }
-         </style>
+         <link rel="stylesheet" type="text/css" href="../styles.css">
     </head>
 
-    <body bgcolor = "Lightgrey">
-    	<img src="../Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
-     	  <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>     
+    <body>
+     <div class="header">
+          <a href="javascript: history.go(-1)">
+              <img src="../Imagenes/Volver.png" class="back">
+          </a>
+          <img src="../Imagenes/Fiscalia.png" class="logo">
+      </div>
     <br>	
     <br>
         <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Registro Usuario</FONT></h1></center> 
@@ -53,9 +42,9 @@
          class="form-control-file" type="text" tsize = "20" maxlength="11" 
          placeholder="Ingrese una contraseña"
          id="contraseña"></center>
-    <br> <br> <br> <br>
+    <br> <br> <br> 
     
-       <center><a class="boton" href="">Registrar</a></center>
-
+       <center><button onclick="">Registrar</button>
+       
    </body>
 </html>

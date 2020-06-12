@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="../styles.css">
+</head>
+</head>
+
+<body>
+  <div class="header">
+    <a href="javascript: history.go(-1)">
+        <img src="../Imagenes/Volver.png" class="back">
+    </a>
+    <img src="../Imagenes/Fiscalia.png" class="logo">
+  </div>
+  <br><br><br>
+  <center>
+    <h1>
+      <FONT FACE="Copperplate" SIZE=7 COLOR="black">Registro Desplazamiento</FONT>
+    </h1>
+  </center>
+  <br>
+  <br>
+  <center><img src="../Imagenes/Desplazamiento.png" align="center" height="90" width="90" alt="Ingresar.png"></center>
+
+  <div class="options">
+    <button2 onclick="cargarIngresoDesplazamiento()" style="margin: 40px">Ingresar Desplazamiento</button2>
+    <button2 onclick="cargarIngresoLugar()" style="margin: 40px">Ingresar Lugar</button2>
+    <button2 onclick="cargarListaDesplazamiento()" style="margin: 40px">Lista Desplazamientos</button2>
+  </div>
+
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script>
+    function cargarIngresoDesplazamiento() {
+      window.location = 'ingresar-desplazamiento.html';
+    }
+  </script>
+
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script>
+    function cargarIngresoLugar() {
+      window.location = 'lugar-desplazamiento.html';
+    }
+  </script>
+
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script>
+    function cargarListaDesplazamiento() {
+      window.location = 'index.html';
+    }
+  </script>
+</body>
+
+</html>

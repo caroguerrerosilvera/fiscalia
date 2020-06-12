@@ -6,9 +6,13 @@
           <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
       </head>
 
-    <body bgcolor = "Lightgrey">
-    	<img src="../Imagenes/Fiscalia.png" style=" width: 350px; height: 100px">
-     	  <a href="javascript: history.go(-1)"><img src="../Imagenes/Volver.png" align = "right" height="50" width="50" alt="Botón"></a>     
+    <body>
+     <div class="header">
+          <a href="javascript: history.go(-1)">
+              <img src="../Imagenes/Volver.png" class="back">
+          </a>
+          <img src="../Imagenes/Fiscalia.png" class="logo">
+      </div>
     <br>	
     <br>
         <center><h1><FONT FACE = "Copperplate" SIZE = 10 COLOR = "black">Ingresar Detenido</FONT></h1></center> 
@@ -58,7 +62,7 @@
                <select id="celdas"></select>
           </div>
      </div>    
-     <button onclick="registrarDetenido()">Ingresar</button>
+     <div style="text-align: center;"><button onclick="registrarDetenido()">Ingresar</button></div>
      <script>window.$ = window.jQuery = require('jquery');</script>
      <script>
           const detenidosControlador = require('../../controladores/detenidos.js');
@@ -105,6 +109,7 @@
                const apellido = $('#apellido').val();
                const fechaNacimiento = $('#fechaNacimiento').val();
                const celda = $('#celdas').children("option:selected").val();
+               const userId = localStorage.getItem('userId');
 
                const respuesta = await detenidosControlador.registrarEntrada(
                     cedula,
@@ -112,7 +117,7 @@
                     apellido,
                     fechaNacimiento,
                     celda,
-                    3
+                    parseInt(userId)
                );
                if (respuesta.status === 'Error') {
                     $('#error').html(respuesta.message);

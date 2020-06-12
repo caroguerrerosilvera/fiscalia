@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Control de detenidos</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-
-    <style type="text/css">
-                .boton{
-                 text-decoration: none;
-                 padding: 10px;
-                 font-weight: 600;
-                 font-size: 20px;
-                 color: #ffffff;
-                 background-color: #1883ba;
-                 border-radius: 6px;
-                 border: 2px solid #0016b0;
-                 }
-                .boton:hover{
-                color: #1883ba;
-                 background-color: #ffffff;
-                 }
-         </style>
+    <link rel="stylesheet" type="text/css" href="vistas/styles.css">
   </head>
-  <body bgcolor = "Lightgrey">
+
+  <body>
     <br><br><br><br>
     <center><img src= "vistas/Imagenes/Fiscalia.png" style=" width: 600px; height: 175px"></center>
     <div>
@@ -42,39 +28,11 @@
         </center>
     </div>
     <div>
-        <button onclick="cargarRegistroUsuario()">Registrarse</button>
-        <button onclick="login()">Ingresar</button>
+      <br><br>
+        <center><button onclick="cargarRegistroUsuario()">Registrarse</button>
+        <button onclick="login()">Ingresar</button></center>
     </div>
-    <br><br><br>
-    <div><center>
-        <a class = "boton" href="vistas/usuarios/registro.html" onclick="cargarRegistroUsuario()">Registrarse</a>
-        <a class = "boton" href="" onclick="login()">Ingresar</a>
-        
-    </div></center>
-    <ul>
-    <br><br><br>
-        <li>
-            <center><a href="vistas/usuarios/registro.html">Vista registro usuario</a>
-        </li></center>
-    <br>
-        <li>
-            <a href="vistas/home.html">Vista Home</a>
-        </li>
-        <li>
-            <a href="vistas/visitas/ingresoVisita.html">Vista Ingreso Visita </a>
-        </li>
-        <li>
-            <a href="vistas/visitas/listaVisita.html">Vista Lista Visita </a>
-        </li>
-        <li>
-            <a href="vistas/visitas/registroVisita.html">Vista Registro Visita </a>
-        </li> 
-        <li>
-            <a href="vistas/visitas/visitaTerminada.html">Vista Visita Terminada </a>
-        </li> 
-    </ul>
-    
-    
+       
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script>
         const authControlador = require('./controladores/usuarios.js');
@@ -87,6 +45,7 @@
             if (respuesta.status === 'Error') {
                 $('#error').html(respuesta.message);
             } else {
+                localStorage.setItem('userId', usuario);
                 window.location = './vistas/home.html';
             }
         }

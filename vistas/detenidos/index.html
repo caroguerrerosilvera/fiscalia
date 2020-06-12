@@ -31,7 +31,7 @@
             </a>
         </div>
     </div>
-    <div id="listadoDetenidos"></div>
+    <div id="listadoDetenidos" class="content"></div>
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script>
         const detenidosControlador = require('../../controladores/detenidos.js');
@@ -46,7 +46,7 @@
                 let lista = '';
                 let i = 0;
                 while (i < respuesta.length) {
-                    if (cedula && cedula.length > 0 && respuesta[i].cedulaDetenido != cedula) {
+                    if (cedula && cedula.length > 0 && respuesta[i].cedula != cedula) {
                         i++;
                         continue;
                     }

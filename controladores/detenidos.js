@@ -5,7 +5,6 @@ async function listar () {
         const respuesta = await detenidoModelo.listar();
         return respuesta;
     } catch (err) {
-        console.log(err);
         return { status: 'Error', message: err.message }
     }
 }
@@ -27,7 +26,6 @@ async function registrarEntrada (cedula, nombre, apellido, fechaNacimiento, idCe
     try {
         const detenido = await detenidoModelo.consultarDetenidoPorCedula(cedula);
         if (!detenido) {
-            console.log('here');
             await detenidoModelo.registrarDetenido(cedula, nombre, apellido, fechaNacimiento, idCelda);
         }
 
